@@ -11,16 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-  /*
-     * ID
-     * Usuário (ID_USUARIO)
-     * Descrição
-     * Título
-     * Data de Início
-     * Data de Término
-     * Prioridade
-     */
-
 @Entity(name = "tb_tasks")
 @Data
 public class TaskModel {
@@ -41,5 +31,11 @@ public class TaskModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
     
+    public void setTitle(String title) throws Exception {
+      if (title.length() > 50) {
+        throw new Exception("O campo title deve conter no máximo 50 caracteres");
+      }
+      this.title = title;
+    }
     
 }
